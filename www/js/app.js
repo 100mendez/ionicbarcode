@@ -21,14 +21,14 @@ var exampleApp = angular.module('starter', ['ionic', 'ngCordova'])
 exampleApp.controller("ExampleController", function($scope, $cordovaBarcodeScanner) {
 
     $scope.scanBarcode = function() {
-        console.log("ok");
-        alert("ok");
         $cordovaBarcodeScanner.scan().then(function(imageData) {
             alert(imageData.text);
-            alert("feito");
+            $scope.texto=imageData.text;
+            $scope.formato=imageData.format;
             console.log("Barcode Format -> " + imageData.format);
             console.log("Cancelled -> " + imageData.cancelled);
         }, function(error) {
+            $scope.texto='error';
             console.log("An error happened -> " + error);
         });
     };
